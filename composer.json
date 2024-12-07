@@ -1,0 +1,15 @@
+{
+    "name": "kvostyc/printforge-stock",
+    "autoload": {
+        "psr-4": {
+            "Kvostyc\\PrintForgeStock\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "kvostyc"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
