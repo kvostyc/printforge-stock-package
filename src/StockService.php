@@ -2,13 +2,15 @@
 
 namespace Kvostyc\PrintForgeStock;
 
-use Kvostyc\PrintForgeStock\Helpers\RequestHelper;
-use Kvostyc\PrintForgeStock\Exceptions\StockException;
+use Kvostyc\PrintForgeStock\Traits\HasOrderItems;
 use Kvostyc\PrintForgeStock\Traits\HasOrderItemStates;
+use Kvostyc\PrintForgeStock\Traits\HasOrders;
 
 class StockService
 {
     use HasOrderItemStates;
+    use HasOrderItems;
+    use HasOrders;
 
     protected $apiUrl;
     protected $apiKey;
@@ -17,29 +19,5 @@ class StockService
     {
         $this->apiUrl = $apiUrl;
         $this->apiKey = $apiKey;
-    }
-
-    /**
-     * Send an order to the Stock API.
-     */
-    public function sendOrder(array $orderData): array
-    {
-        $endpoint = "{$this->apiUrl}/api/remote/v1/orders";
-        $response = RequestHelper::post($endpoint, $orderData, $this->apiKey);
-
-        return $response;
-    }
-
-    /**
-     * Update an existing order in the Stock system.
-     */
-    public function updateOrder(string $orderNumber, array $orderData): array
-    {
-        $endpoint = "{$this->apiUrl}/api/remote/v1/orders/{$orderNumber}";
-
-        // Use the patch method from RequestHelper to update the order
-        $response = RequestHelper::patch($endpoint, $orderData, $this->apiKey);
-
-        return $response;
     }
 }
