@@ -4,9 +4,12 @@ namespace Kvostyc\PrintForgeStock;
 
 use Kvostyc\PrintForgeStock\Helpers\RequestHelper;
 use Kvostyc\PrintForgeStock\Exceptions\StockException;
+use Kvostyc\PrintForgeStock\Traits\HasOrderItemStates;
 
 class StockService
 {
+    use HasOrderItemStates;
+
     protected $apiUrl;
     protected $apiKey;
 
